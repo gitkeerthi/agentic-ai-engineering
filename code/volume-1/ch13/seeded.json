@@ -1,0 +1,140 @@
+[
+  {
+    "id": "grounded-1",
+    "shipment_id": "SH-4471",
+    "plants": "grounded",
+    "why": "One fact says the invoice was uploaded Monday; DOC-5531's record says Thursday.",
+    "finding": {
+      "shipment_id": "SH-4471",
+      "status": "cause_found",
+      "cause": "The commercial invoice DOC-5531 is filed against customs case RTM-88124 instead of RTM-88213, so RTM-88213 shows it as not received.",
+      "evidence": [
+        {"record_id": "RTM-88213", "fact": "The case is on hold because a required document was not received."},
+        {"record_id": "DOC-5531", "fact": "The commercial invoice was uploaded on Monday and filed against RTM-88124."},
+        {"record_id": "RTM-88124", "fact": "The case belongs to shipment SH-4398 and is cleared."}
+      ],
+      "recommended_action": "Refile DOC-5531 against customs case RTM-88213.",
+      "refiling": {"document_id": "DOC-5531", "customs_case": "RTM-88213"}
+    }
+  },
+  {
+    "id": "grounded-2",
+    "shipment_id": "SH-4560",
+    "plants": "grounded",
+    "why": "One fact gives RTM-88405's hold reason as a physical inspection; the record says a required document not received.",
+    "finding": {
+      "shipment_id": "SH-4560",
+      "status": "cause_found",
+      "cause": "The bill of lading DOC-5711 is filed against customs case RTM-88410 instead of RTM-88405, so RTM-88405 shows it as not received.",
+      "evidence": [
+        {"record_id": "RTM-88405", "fact": "The case is on hold for a physical inspection."},
+        {"record_id": "DOC-5711", "fact": "The bill of lading is filed against customs case RTM-88410."},
+        {"record_id": "RTM-88410", "fact": "The case belongs to shipment SH-4561 and is cleared."}
+      ],
+      "recommended_action": "Refile DOC-5711 against customs case RTM-88405.",
+      "refiling": {"document_id": "DOC-5711", "customs_case": "RTM-88405"}
+    }
+  },
+  {
+    "id": "correct-1",
+    "shipment_id": "SH-4471",
+    "plants": "correct",
+    "why": "The cause says the invoice was never uploaded; it was uploaded and filed against another shipment's case.",
+    "finding": {
+      "shipment_id": "SH-4471",
+      "status": "cause_found",
+      "cause": "The commercial invoice for SH-4471 was never uploaded, so RTM-88213 shows it as not received.",
+      "evidence": [
+        {"record_id": "RTM-88213", "fact": "The case is on hold because a required document was not received, and it lists the commercial invoice as not received."}
+      ],
+      "recommended_action": "Obtain the commercial invoice and file it against customs case RTM-88213.",
+      "refiling": null
+    }
+  },
+  {
+    "id": "correct-2",
+    "shipment_id": "SH-4502",
+    "plants": "correct",
+    "why": "The cause says the packing list is filed against another case; no packing list is on file at all.",
+    "finding": {
+      "shipment_id": "SH-4502",
+      "status": "cause_found",
+      "cause": "The packing list for SH-4502 is filed against another shipment's customs case, so RTM-88301 shows it as not received.",
+      "evidence": [
+        {"record_id": "RTM-88301", "fact": "The case is on hold because a required document was not received, and it lists the packing list as not received."}
+      ],
+      "recommended_action": "Find the misfiled packing list and refile it against customs case RTM-88301.",
+      "refiling": null
+    }
+  },
+  {
+    "id": "reasoned-1",
+    "shipment_id": "SH-4471",
+    "plants": "reasoned",
+    "why": "The cause is right, but the two facts cited are true and say nothing about where the invoice is filed.",
+    "finding": {
+      "shipment_id": "SH-4471",
+      "status": "cause_found",
+      "cause": "The commercial invoice DOC-5531 is filed against customs case RTM-88124 instead of RTM-88213, so RTM-88213 shows it as not received.",
+      "evidence": [
+        {"record_id": "SH-4471", "fact": "The shipment is held at the Rotterdam customs yard."},
+        {"record_id": "DOC-5529", "fact": "The bill of lading is filed against customs case RTM-88213."}
+      ],
+      "recommended_action": "Refile DOC-5531 against customs case RTM-88213.",
+      "refiling": {"document_id": "DOC-5531", "customs_case": "RTM-88213"}
+    }
+  },
+  {
+    "id": "reasoned-2",
+    "shipment_id": "SH-4560",
+    "plants": "reasoned",
+    "why": "The cause is right, but the facts cited are about the invoice and the shipment, not the bill of lading.",
+    "finding": {
+      "shipment_id": "SH-4560",
+      "status": "cause_found",
+      "cause": "The bill of lading DOC-5711 is filed against customs case RTM-88410 instead of RTM-88405, so RTM-88405 shows it as not received.",
+      "evidence": [
+        {"record_id": "SH-4560", "fact": "The shipment is held at the Antwerp customs yard."},
+        {"record_id": "DOC-5712", "fact": "The commercial invoice is filed against customs case RTM-88405."}
+      ],
+      "recommended_action": "Refile DOC-5711 against customs case RTM-88405.",
+      "refiling": {"document_id": "DOC-5711", "customs_case": "RTM-88405"}
+    }
+  },
+  {
+    "id": "relevant-1",
+    "shipment_id": "SH-4471",
+    "plants": "relevant",
+    "why": "The finding is right, but the action would do nothing about the misfiled invoice.",
+    "finding": {
+      "shipment_id": "SH-4471",
+      "status": "cause_found",
+      "cause": "The commercial invoice DOC-5531 is filed against customs case RTM-88124 instead of RTM-88213, so RTM-88213 shows it as not received.",
+      "evidence": [
+        {"record_id": "RTM-88213", "fact": "The case is on hold because a required document was not received."},
+        {"record_id": "DOC-5531", "fact": "The commercial invoice is filed against customs case RTM-88124."},
+        {"record_id": "RTM-88124", "fact": "The case belongs to shipment SH-4398 and is cleared."}
+      ],
+      "recommended_action": "Contact the carrier to confirm when the shipment will leave the Rotterdam customs yard.",
+      "refiling": {"document_id": "DOC-5531", "customs_case": "RTM-88213"}
+    }
+  },
+  {
+    "id": "relevant-2",
+    "shipment_id": "SH-4588",
+    "plants": "relevant",
+    "why": "The finding rightly says the records can't tell, then recommends releasing the hold, which nobody has shown is safe.",
+    "finding": {
+      "shipment_id": "SH-4588",
+      "status": "undetermined",
+      "cause": null,
+      "evidence": [
+        {"record_id": "RTM-88377", "fact": "The case is on hold because a required document was not received."},
+        {"record_id": "DOC-5801", "fact": "The bill of lading is filed against RTM-88377."},
+        {"record_id": "DOC-5802", "fact": "The commercial invoice is filed against RTM-88377."}
+      ],
+      "recommended_action": "Release the hold on customs case RTM-88377, since every required document is on file.",
+      "refiling": null
+    }
+  }
+]

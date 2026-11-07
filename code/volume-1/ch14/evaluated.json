@@ -1,0 +1,7 @@
+{
+  "source": "Chapter 13's evaluation runs (ch13/results/A.jsonl and B.jsonl): the configuration each saved run records",
+  "configurations": [
+    {"version": "A", "decision": "kept", "instructions.md5": "5aff98af220a3654a3a025491ea953e9", "model": "deepseek-flash", "framework.version": "1.24.0"},
+    {"version": "B", "decision": "not adopted", "instructions.md5": "60e827a74e3690313b23d19f599470f8", "model": "deepseek-flash", "framework.version": "1.24.0"}
+  ]
+}

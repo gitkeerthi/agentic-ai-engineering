@@ -1,0 +1,76 @@
+[project]
+name = "agentic-ai-engineering"
+version = "0.1.0"
+description = "Runnable examples for Agentic AI Engineering, Volume 1: Agent Foundations and Quality Engineering"
+requires-python = ">=3.13,<3.14"
+license = "MIT"
+dependencies = [
+    "agent-framework-core==1.24.0",
+    "agent-framework-openai==1.18.0",
+    "agent-hooks-sdk==0.1.0b3",
+    "jsonschema>=4.26.0",
+    "langfuse>=5.1.0",
+    "opentelemetry-exporter-otlp-proto-grpc==1.45.2",
+    "opentelemetry-exporter-otlp-proto-http==1.45.2",
+    "opentelemetry-instrumentation-logging==0.66b2",
+    "opentelemetry-processor-baggage==0.66b2",
+    "opentelemetry-sdk==1.45.2",
+    "python-dotenv>=1.2",
+    "scipy>=1.18.1",
+    "tenacity>=9",
+]
+
+[project.scripts]
+cobalt = "cobalt_exceptions.cli:main"
+
+[dependency-groups]
+dev = [
+    "import-linter>=2.1",
+    "pytest>=8",
+    "pytest-recording>=0.14.0",
+    "syrupy>=6.1.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["agentlab", "cobalt_exceptions"]
+
+# The application's dependency rule (Chapter 15), checked by `lint-imports` and by tests/test_layers.py.
+[tool.importlinter]
+root_packages = ["cobalt_exceptions"]
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "Each layer imports only the layers below it"
+type = "layers"
+layers = [
+    "cobalt_exceptions.cli",
+    "cobalt_exceptions.agents | cobalt_exceptions.services",
+    "cobalt_exceptions.systems",
+    "cobalt_exceptions.domain",
+]
+
+[[tool.importlinter.contracts]]
+name = "The domain, systems and services never import the framework or the model client"
+type = "forbidden"
+source_modules = [
+    "cobalt_exceptions.domain",
+    "cobalt_exceptions.systems",
+    "cobalt_exceptions.services",
+]
+forbidden_modules = ["agent_framework", "agentlab", "openai", "opentelemetry"]
+
+[[tool.importlinter.contracts]]
+name = "Only the services may file"
+type = "forbidden"
+source_modules = [
+    "cobalt_exceptions.cli",
+    "cobalt_exceptions.agents",
+    "cobalt_exceptions.domain",
+]
+forbidden_modules = ["cobalt_exceptions.systems.filing"]
+# The one indirect route allowed: the entry points reach the store's write through the gate.
+ignore_imports = ["cobalt_exceptions.cli -> cobalt_exceptions.services.*"]

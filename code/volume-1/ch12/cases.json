@@ -1,0 +1,51 @@
+[
+  {
+    "case": "misfiled invoice",
+    "shipment_id": "SH-4471",
+    "why": "The commercial invoice is filed against another shipment's customs case.",
+    "expected": {
+      "ending": "finding",
+      "status": "cause_found",
+      "refiling": {"document_id": "DOC-5531", "customs_case": "RTM-88213"}
+    }
+  },
+  {
+    "case": "not held",
+    "shipment_id": "SH-5120",
+    "why": "In transit with no customs case: nothing holds it.",
+    "expected": {"ending": "finding", "status": "nothing_wrong", "refiling": null}
+  },
+  {
+    "case": "never uploaded",
+    "shipment_id": "SH-4502",
+    "why": "The packing list was never uploaded, so there is nothing to refile.",
+    "expected": {"ending": "finding", "status": "cause_found", "refiling": null}
+  },
+  {
+    "case": "misfiled bill of lading",
+    "shipment_id": "SH-4560",
+    "why": "The bill of lading is filed against another shipment's customs case.",
+    "expected": {
+      "ending": "finding",
+      "status": "cause_found",
+      "refiling": {"document_id": "DOC-5711", "customs_case": "RTM-88405"}
+    }
+  },
+  {
+    "case": "inspection hold",
+    "shipment_id": "SH-4533",
+    "why": "Held for a physical inspection: outside the documents procedure.",
+    "expected": {"ending": "flagged", "reason": "outside_procedure"}
+  },
+  {
+    "case": "records don't say",
+    "shipment_id": "SH-4588",
+    "why": "Every required document is received and filed correctly; the records don't show the cause.",
+    "expected": {
+      "ending": "flagged",
+      "reason": "no_usable_finding",
+      "status": "undetermined",
+      "refiling": null
+    }
+  }
+]

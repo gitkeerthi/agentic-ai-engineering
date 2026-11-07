@@ -1,0 +1,204 @@
+{
+  "instructions": [
+    "You interpret the records Cobalt Freight's procedure has gathered for one held",
+    "shipment.",
+    "",
+    "The message holds every record the procedure collected, as JSON: the shipment, its",
+    "customs case, the documents the case requires, where each one is filed, and any other",
+    "customs case a document is filed against.",
+    "Work only from these records. Find what is holding the shipment and the action that",
+    "would fix it.",
+    "If the records can't tell you, say so with status undetermined.",
+    "",
+    "Call report_finding once with your finding. Don't answer in text.",
+    "",
+    "Limits:",
+    "- Recommend actions; never claim to have taken one."
+  ],
+  "messages": [
+    {
+      "case file": {
+        "case": {
+          "hold_reason": "required document not received",
+          "shipment_id": "SH-4471",
+          "status": "on hold"
+        },
+        "case_id": "RTM-88213",
+        "filings": {
+          "bill of lading": {
+            "document_id": "DOC-5529",
+            "filed_against_customs_case": "RTM-88213",
+            "uploaded": "Thursday"
+          },
+          "commercial invoice": {
+            "document_id": "DOC-5531",
+            "filed_against_customs_case": "RTM-88124",
+            "uploaded": "Thursday"
+          },
+          "packing list": {
+            "document_id": "DOC-5530",
+            "filed_against_customs_case": "RTM-88213",
+            "uploaded": "Thursday"
+          }
+        },
+        "other_cases": {
+          "RTM-88124": {
+            "hold_reason": null,
+            "shipment_id": "SH-4398",
+            "status": "cleared"
+          }
+        },
+        "required": [
+          {
+            "document": "bill of lading",
+            "received": true
+          },
+          {
+            "document": "commercial invoice",
+            "received": false
+          },
+          {
+            "document": "packing list",
+            "received": true
+          }
+        ],
+        "shipment": {
+          "contents": "industrial pumps",
+          "customs_case": "RTM-88213",
+          "due": "Friday",
+          "location": "Rotterdam customs yard",
+          "status": "held"
+        },
+        "shipment_id": "SH-4471"
+      },
+      "role": "user"
+    }
+  ],
+  "model": "deepseek-flash",
+  "tools": [
+    {
+      "function": {
+        "description": "Report the finding to Cobalt's case system.",
+        "name": "report_finding",
+        "parameters": {
+          "$defs": {
+            "Evidence": {
+              "properties": {
+                "fact": {
+                  "description": "What that record shows, in one sentence",
+                  "title": "Fact",
+                  "type": "string"
+                },
+                "record_id": {
+                  "description": "ID of the record that shows the fact",
+                  "pattern": "^(SH-\\d{4}|RTM-\\d{5}|DOC-\\d{4})$",
+                  "title": "Record Id",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "record_id",
+                "fact"
+              ],
+              "title": "Evidence",
+              "type": "object"
+            },
+            "Refiling": {
+              "properties": {
+                "customs_case": {
+                  "description": "The customs case it should be filed against",
+                  "pattern": "^RTM-\\d{5}$",
+                  "title": "Customs Case",
+                  "type": "string"
+                },
+                "document_id": {
+                  "description": "The misfiled document",
+                  "pattern": "^DOC-\\d{4}$",
+                  "title": "Document Id",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "document_id",
+                "customs_case"
+              ],
+              "title": "Refiling",
+              "type": "object"
+            }
+          },
+          "properties": {
+            "cause": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "One sentence; null unless status is cause_found",
+              "title": "Cause"
+            },
+            "evidence": {
+              "description": "The facts that support the status, one per record",
+              "items": {
+                "$ref": "#/$defs/Evidence"
+              },
+              "title": "Evidence",
+              "type": "array"
+            },
+            "recommended_action": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "One sentence for a person; null if nothing needs doing",
+              "title": "Recommended Action"
+            },
+            "refiling": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Refiling"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Set only when the fix is to refile a misfiled document"
+            },
+            "shipment_id": {
+              "pattern": "^SH-\\d{4}$",
+              "title": "Shipment Id",
+              "type": "string"
+            },
+            "status": {
+              "description": "cause_found: the records show what is delaying it; nothing_wrong: the records show no problem; undetermined: the tools could not tell",
+              "enum": [
+                "cause_found",
+                "nothing_wrong",
+                "undetermined"
+              ],
+              "title": "Status",
+              "type": "string"
+            }
+          },
+          "required": [
+            "shipment_id",
+            "status",
+            "cause",
+            "evidence",
+            "recommended_action",
+            "refiling"
+          ],
+          "title": "Finding",
+          "type": "object"
+        }
+      },
+      "type": "function"
+    }
+  ]
+}

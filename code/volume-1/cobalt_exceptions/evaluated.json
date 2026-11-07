@@ -1,0 +1,15 @@
+{
+  "golden_set": "2026-11-02.ch15",
+  "store": "ch15/store/eval",
+  "runs": 123,
+  "released_wrong": 0,
+  "configuration": {
+    "cobalt.code.md5": "97181f651cf3a2e8facc676d776ea0cf",
+    "cobalt.framework.version": "1.24.0+openai-1.18.0",
+    "cobalt.instructions.md5": "212fc995fd6670a26733750c59eb3556",
+    "cobalt.model": "deepseek-flash",
+    "cobalt.release": "2026.11.15",
+    "cobalt.request_settings.md5": "0eaadc86c30cd6372d5fa5b232165bf2",
+    "cobalt.tools.md5": "23021dca68c79e627c8696ad53af2bed"
+  }
+}

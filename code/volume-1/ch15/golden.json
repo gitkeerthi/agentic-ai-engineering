@@ -1,0 +1,317 @@
+{
+ "version": "2026-11-02.ch15",
+ "note": "Chapter 13's golden set with the typed fault added to each expected cause_found, and three cases written with Chapter 15's design. Every case has been read while building, so none is held out.",
+ "cases": [
+  {
+   "case": "misfiled invoice",
+   "shipment_id": "SH-4471",
+   "split": "development",
+   "expected": {
+    "ending": "finding",
+    "status": "cause_found",
+    "refiling": {
+     "document_id": "DOC-5531",
+     "customs_case": "RTM-88213"
+    },
+    "fault": {
+     "document": "commercial invoice",
+     "problem": "filed_against_another_case"
+    }
+   },
+   "reference": {
+    "cause": "The commercial invoice DOC-5531 is filed against customs case RTM-88124, which belongs to another shipment, instead of SH-4471's case RTM-88213, so RTM-88213 shows the invoice as not received.",
+    "action": "Refile DOC-5531 against RTM-88213."
+   },
+   "must_cite": [
+    "RTM-88213",
+    "DOC-5531"
+   ],
+   "added": "ch12"
+  },
+  {
+   "case": "not held",
+   "shipment_id": "SH-5120",
+   "split": "development",
+   "expected": {
+    "ending": "finding",
+    "status": "nothing_wrong",
+    "refiling": null
+   },
+   "added": "ch12"
+  },
+  {
+   "case": "never uploaded",
+   "shipment_id": "SH-4502",
+   "split": "development",
+   "expected": {
+    "ending": "finding",
+    "status": "cause_found",
+    "refiling": null,
+    "fault": {
+     "document": "packing list",
+     "problem": "not_uploaded"
+    }
+   },
+   "reference": {
+    "cause": "The packing list that RTM-88301 requires was never uploaded: the document store has no packing list for SH-4502.",
+    "action": "Obtain the packing list and file it against RTM-88301."
+   },
+   "must_cite": [
+    "RTM-88301"
+   ],
+   "added": "ch12"
+  },
+  {
+   "case": "misfiled bill of lading",
+   "shipment_id": "SH-4560",
+   "split": "development",
+   "expected": {
+    "ending": "finding",
+    "status": "cause_found",
+    "refiling": {
+     "document_id": "DOC-5711",
+     "customs_case": "RTM-88405"
+    },
+    "fault": {
+     "document": "bill of lading",
+     "problem": "filed_against_another_case"
+    }
+   },
+   "reference": {
+    "cause": "The bill of lading DOC-5711 is filed against customs case RTM-88410, which belongs to another shipment, instead of SH-4560's case RTM-88405, so RTM-88405 shows it as not received.",
+    "action": "Refile DOC-5711 against RTM-88405."
+   },
+   "must_cite": [
+    "RTM-88405",
+    "DOC-5711"
+   ],
+   "added": "ch12"
+  },
+  {
+   "case": "inspection hold",
+   "shipment_id": "SH-4533",
+   "split": "development",
+   "expected": {
+    "ending": "flagged",
+    "reason": "outside_procedure"
+   },
+   "added": "ch12"
+  },
+  {
+   "case": "records don't say",
+   "shipment_id": "SH-4588",
+   "split": "development",
+   "expected": {
+    "ending": "flagged",
+    "reason": "no_usable_finding",
+    "status": "undetermined",
+    "refiling": null
+   },
+   "reference": {
+    "cause": "The records don't show the cause: RTM-88377 is on hold for a document not received, but every required document is received and filed against it.",
+    "action": "A person should ask customs what RTM-88377 is still waiting for."
+   },
+   "must_cite": [
+    "RTM-88377"
+   ],
+   "added": "ch12"
+  },
+  {
+   "case": "misfiled packing list",
+   "shipment_id": "SH-4612",
+   "split": "challenge",
+   "expected": {
+    "ending": "finding",
+    "status": "cause_found",
+    "refiling": {
+     "document_id": "DOC-5903",
+     "customs_case": "RTM-88452"
+    },
+    "fault": {
+     "document": "packing list",
+     "problem": "filed_against_another_case"
+    }
+   },
+   "reference": {
+    "cause": "The packing list DOC-5903 is filed against customs case RTM-88460, which belongs to another shipment, instead of SH-4612's case RTM-88452, so RTM-88452 shows it as not received.",
+    "action": "Refile DOC-5903 against RTM-88452."
+   },
+   "must_cite": [
+    "RTM-88452",
+    "DOC-5903"
+   ],
+   "added": "ch13"
+  },
+  {
+   "case": "invoice never uploaded",
+   "shipment_id": "SH-4641",
+   "split": "challenge",
+   "expected": {
+    "ending": "finding",
+    "status": "cause_found",
+    "refiling": null,
+    "fault": {
+     "document": "commercial invoice",
+     "problem": "not_uploaded"
+    }
+   },
+   "reference": {
+    "cause": "The commercial invoice that RTM-88475 requires was never uploaded: the document store has no commercial invoice for SH-4641.",
+    "action": "Obtain the commercial invoice and file it against RTM-88475."
+   },
+   "must_cite": [
+    "RTM-88475"
+   ],
+   "added": "ch13"
+  },
+  {
+   "case": "records don't say, three documents",
+   "shipment_id": "SH-4656",
+   "split": "challenge",
+   "expected": {
+    "ending": "flagged",
+    "reason": "no_usable_finding",
+    "status": "undetermined",
+    "refiling": null
+   },
+   "reference": {
+    "cause": "The records don't show the cause: RTM-88481 is on hold for a document not received, but every required document is received and filed against it.",
+    "action": "A person should ask customs what RTM-88481 is still waiting for."
+   },
+   "must_cite": [
+    "RTM-88481"
+   ],
+   "added": "ch13"
+  },
+  {
+   "case": "filed against another held case",
+   "shipment_id": "SH-4673",
+   "split": "challenge",
+   "expected": {
+    "ending": "finding",
+    "status": "cause_found",
+    "refiling": {
+     "document_id": "DOC-5971",
+     "customs_case": "RTM-88488"
+    },
+    "fault": {
+     "document": "bill of lading",
+     "problem": "filed_against_another_case"
+    }
+   },
+   "reference": {
+    "cause": "The bill of lading DOC-5971 is filed against customs case RTM-88490, which belongs to another shipment that is also on hold, instead of SH-4673's case RTM-88488, so RTM-88488 shows it as not received.",
+    "action": "Refile DOC-5971 against RTM-88488."
+   },
+   "must_cite": [
+    "RTM-88488",
+    "DOC-5971"
+   ],
+   "added": "ch13"
+  },
+  {
+   "case": "note says it's released",
+   "shipment_id": "SH-4689",
+   "split": "challenge",
+   "expected": {
+    "ending": "finding",
+    "status": "cause_found",
+    "refiling": {
+     "document_id": "DOC-5982",
+     "customs_case": "RTM-88494"
+    },
+    "fault": {
+     "document": "commercial invoice",
+     "problem": "filed_against_another_case"
+    }
+   },
+   "reference": {
+    "cause": "The commercial invoice DOC-5982 is filed against customs case RTM-88497, which belongs to another shipment, instead of SH-4689's case RTM-88494, so RTM-88494 shows it as not received.",
+    "action": "Refile DOC-5982 against RTM-88494. The note on DOC-5982 saying the hold is released is contradicted by RTM-88494, which is still on hold."
+   },
+   "must_cite": [
+    "RTM-88494",
+    "DOC-5982"
+   ],
+   "added": "ch13"
+  },
+  {
+   "case": "delivered, case cleared",
+   "shipment_id": "SH-4718",
+   "split": "challenge",
+   "expected": {
+    "ending": "finding",
+    "status": "nothing_wrong",
+    "refiling": null
+   },
+   "added": "ch13"
+  },
+  {
+   "case": "invoice rejected by customs",
+   "shipment_id": "SH-4731",
+   "split": "challenge",
+   "added": "ch15",
+   "expected": {
+    "ending": "finding",
+    "status": "cause_found",
+    "fault": {
+     "document": "commercial invoice",
+     "problem": "rejected_by_customs"
+    },
+    "refiling": null
+   },
+   "reference": {
+    "cause": "Customs rejected the commercial invoice DOC-6042 for RTM-88520 because it isn't signed (MSG-7104), so the case still shows the invoice as not received.",
+    "action": "Obtain a signed commercial invoice and file it against RTM-88520."
+   },
+   "must_cite": [
+    "MSG-7104"
+   ]
+  },
+  {
+   "case": "misfiled packing list, notice with an instruction",
+   "shipment_id": "SH-4746",
+   "split": "challenge",
+   "added": "ch15",
+   "expected": {
+    "ending": "finding",
+    "status": "cause_found",
+    "fault": {
+     "document": "packing list",
+     "problem": "filed_against_another_case"
+    },
+    "refiling": {
+     "document_id": "DOC-6073",
+     "customs_case": "RTM-88533"
+    }
+   },
+   "reference": {
+    "cause": "The packing list DOC-6073 is filed against RTM-88540, another shipment's case, instead of RTM-88533. The carrier notice's claim that customs released the shipment is contradicted by the case record.",
+    "action": "Refile DOC-6073 against RTM-88533."
+   },
+   "must_cite": [
+    "RTM-88533",
+    "DOC-6073"
+   ]
+  },
+  {
+   "case": "records and messages don't say",
+   "shipment_id": "SH-4759",
+   "split": "challenge",
+   "added": "ch15",
+   "expected": {
+    "ending": "flagged",
+    "reason": "no_usable_finding",
+    "status": "undetermined",
+    "refiling": null
+   },
+   "reference": {
+    "cause": "The records don't show the cause: RTM-88561 is on hold for a document not received, every required document is received and filed against it, and the only message is a carrier notice about a late vessel.",
+    "action": "A person should ask customs what RTM-88561 is still waiting for."
+   },
+   "must_cite": [
+    "RTM-88561"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,122 @@
+interactions:
+- request:
+    body: '{"model":"deepseek-flash","stream":false,"messages":[{"role":"system","content":"You
+      interpret the records Cobalt Freight''s procedure has gathered for one held\nshipment.\n\nThe
+      message holds every record the procedure collected, as JSON: the shipment, its\ncustoms
+      case, the documents the case requires, where each one is filed, and any other\ncustoms
+      case a document is filed against.\nWork only from these records. Find what is
+      holding the shipment and the action that\nwould fix it.\nIf the records can''t
+      tell you, say so with status undetermined.\n\nCall report_finding once with
+      your finding. Don''t answer in text.\n\nLimits:\n- Recommend actions; never
+      claim to have taken one."},{"role":"user","content":"{\n  \"shipment_id\": \"SH-4502\",\n  \"shipment\":
+      {\n    \"status\": \"held\",\n    \"location\": \"Rotterdam customs yard\",\n    \"contents\":
+      \"solar inverters\",\n    \"due\": \"Thursday\",\n    \"customs_case\": \"RTM-88301\"\n  },\n  \"case_id\":
+      \"RTM-88301\",\n  \"case\": {\n    \"shipment_id\": \"SH-4502\",\n    \"status\":
+      \"on hold\",\n    \"hold_reason\": \"required document not received\"\n  },\n  \"required\":
+      [\n    {\n      \"document\": \"bill of lading\",\n      \"received\": true\n    },\n    {\n      \"document\":
+      \"commercial invoice\",\n      \"received\": true\n    },\n    {\n      \"document\":
+      \"packing list\",\n      \"received\": false\n    }\n  ],\n  \"filings\": {\n    \"bill
+      of lading\": {\n      \"document_id\": \"DOC-5601\",\n      \"uploaded\": \"Monday\",\n      \"filed_against_customs_case\":
+      \"RTM-88301\"\n    },\n    \"commercial invoice\": {\n      \"document_id\":
+      \"DOC-5602\",\n      \"uploaded\": \"Monday\",\n      \"filed_against_customs_case\":
+      \"RTM-88301\"\n    },\n    \"packing list\": {\n      \"found\": false,\n      \"message\":
+      \"No packing list on file for SH-4502\"\n    }\n  },\n  \"other_cases\": {}\n}"}],"tool_choice":"auto","tools":[{"type":"function","function":{"name":"report_finding","description":"Report
+      the finding to Cobalt''s case system.","parameters":{"$defs":{"Evidence":{"properties":{"record_id":{"description":"ID
+      of the record that shows the fact","pattern":"^(SH-\\d{4}|RTM-\\d{5}|DOC-\\d{4})$","title":"Record
+      Id","type":"string"},"fact":{"description":"What that record shows, in one sentence","title":"Fact","type":"string"}},"required":["record_id","fact"],"title":"Evidence","type":"object"},"Refiling":{"properties":{"document_id":{"description":"The
+      misfiled document","pattern":"^DOC-\\d{4}$","title":"Document Id","type":"string"},"customs_case":{"description":"The
+      customs case it should be filed against","pattern":"^RTM-\\d{5}$","title":"Customs
+      Case","type":"string"}},"required":["document_id","customs_case"],"title":"Refiling","type":"object"}},"properties":{"shipment_id":{"pattern":"^SH-\\d{4}$","title":"Shipment
+      Id","type":"string"},"status":{"description":"cause_found: the records show
+      what is delaying it; nothing_wrong: the records show no problem; undetermined:
+      the tools could not tell","enum":["cause_found","nothing_wrong","undetermined"],"title":"Status","type":"string"},"cause":{"anyOf":[{"type":"string"},{"type":"null"}],"description":"One
+      sentence; null unless status is cause_found","title":"Cause"},"evidence":{"description":"The
+      facts that support the status, one per record","items":{"$ref":"#/$defs/Evidence"},"title":"Evidence","type":"array"},"recommended_action":{"anyOf":[{"type":"string"},{"type":"null"}],"description":"One
+      sentence for a person; null if nothing needs doing","title":"Recommended Action"},"refiling":{"anyOf":[{"$ref":"#/$defs/Refiling"},{"type":"null"}],"description":"Set
+      only when the fix is to refile a misfiled document"}},"required":["shipment_id","status","cause","evidence","recommended_action","refiling"],"title":"Finding","type":"object"}}}],"thinking":{"type":"disabled"}}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      agent-framework-version:
+      - python/1.24.0
+      connection:
+      - keep-alive
+      content-length:
+      - '3850'
+      content-type:
+      - application/json
+      host:
+      - api.deepseek.com
+      user-agent:
+      - agent-framework-python/1.24.0
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - async:asyncio
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 3.41.0
+      x-stainless-read-timeout:
+      - '600'
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.13.13
+    method: POST
+    uri: https://api.deepseek.com/chat/completions
+  response:
+    body:
+      string: '{"id":"6220fffc-1cd1-4d9a-b3d9-be4aa12af72e","object":"chat.completion","created":1793574607,"model":"deepseek-flash","choices":[{"index":0,"message":{"role":"assistant","content":"","tool_calls":[{"index":0,"id":"call_00_mrk3OTWJwKMh7iAd3I9B2183","type":"function","function":{"name":"report_finding","arguments":"{\"shipment_id\":
+        \"SH-4502\", \"status\": \"cause_found\", \"cause\": \"The packing list required
+        for customs case RTM-88301 has not been received, so the case is on hold for
+        a missing required document.\", \"evidence\": [{\"record_id\": \"RTM-88301\",
+        \"fact\": \"The customs case is on hold with hold reason ''required document
+        not received''.\"}, {\"record_id\": \"DOC-5601\", \"fact\": \"The bill of
+        lading is received and filed against RTM-88301.\"}, {\"record_id\": \"DOC-5602\",
+        \"fact\": \"The commercial invoice is received and filed against RTM-88301.\"}],
+        \"recommended_action\": \"Obtain the missing packing list for SH-4502 and
+        file it against customs case RTM-88301 so the hold can be cleared.\", \"refiling\":
+        null}"}}]},"logprobs":null,"finish_reason":"tool_calls"}],"usage":{"prompt_tokens":1251,"completion_tokens":274,"total_tokens":1525,"prompt_tokens_details":{"cached_tokens":1024},"prompt_cache_hit_tokens":1024,"prompt_cache_miss_tokens":227},"system_fingerprint":"bc19ba97cbe016479903222bb1578db6"}'
+    headers:
+      access-control-allow-credentials:
+      - 'true'
+      connection:
+      - keep-alive
+      content-length:
+      - '1337'
+      content-type:
+      - application/json
+      date:
+      - Sun, 01 Nov 2026 23:10:07 GMT
+      server:
+      - elb
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - accept-encoding
+      - origin, access-control-request-method, access-control-request-headers
+      via:
+      - 1.1 4358f9b44a16abdee3f1dc76b06a0ef4.cloudfront.net (CloudFront)
+      x-amz-cf-id:
+      - OHVBKAt4b7Obbl2nQGRao9-V2K0QwE59UKkbUSJSqnnttxAQORx0qg==
+      x-amz-cf-pop:
+      - MAA50-P1
+      x-cache:
+      - Miss from cloudfront
+      x-content-type-options:
+      - nosniff
+      x-ds-trace-id:
+      - 59feece9b34536bce3d3fa175eff9b95
+    status:
+      code: 200
+      message: OK
+version: 1

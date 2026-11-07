@@ -1,0 +1,21 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+usage.jsonl
+
+# Chapter 6 writes sessions here when its programs run
+ch06/*.json
+
+# Chapter 7 writes session histories here when its programs run
+ch07/history/
+
+# Chapter 9 writes its records, saved sessions and approval queue here when its programs run
+ch09/state/
+
+# Chapter 14 tests write a fresh telemetry store here on every run
+ch14/store/tests/
+
+# The application keeps its stand-in systems and telemetry here when the cobalt command runs
+.cobalt/

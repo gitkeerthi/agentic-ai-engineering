@@ -1,0 +1,332 @@
+[
+ {
+  "version": "A",
+  "shipment_id": "SH-4471",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4471",
+  "run": 2,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4502",
+  "run": 1,
+  "grounded": false,
+  "correct": true,
+  "reasoned": false,
+  "relevant": true,
+  "note": "The only evidence is SH-4504, which isn't in the records, with the fact 'placeholder'."
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4502",
+  "run": 2,
+  "grounded": false,
+  "correct": true,
+  "reasoned": false,
+  "relevant": true,
+  "note": "The first fact is about SH-4502 but cites SH-4504, which isn't in the records; no cited fact mentions the packing list."
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4560",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4560",
+  "run": 2,
+  "grounded": false,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": "One fact cites SH-4561, which has no record in the case file; the record that shows it is RTM-88410."
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4588",
+  "run": 1,
+  "grounded": true,
+  "correct": false,
+  "reasoned": false,
+  "relevant": false,
+  "note": "Reports nothing_wrong for a shipment on hold, and recommends nothing."
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4588",
+  "run": 2,
+  "grounded": true,
+  "correct": false,
+  "reasoned": false,
+  "relevant": false,
+  "note": "Reports nothing_wrong, and recommends clearing the hold, which assumes what nobody has checked."
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4612",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4612",
+  "run": 2,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4641",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4641",
+  "run": 2,
+  "grounded": true,
+  "correct": true,
+  "reasoned": false,
+  "relevant": true,
+  "note": "No cited fact says the commercial invoice is missing; the facts are the hold and the two documents that are on file."
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4656",
+  "run": 1,
+  "grounded": true,
+  "correct": false,
+  "reasoned": false,
+  "relevant": true,
+  "note": "Reports nothing_wrong for a shipment on hold; the action does ask a person to find out why."
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4656",
+  "run": 2,
+  "grounded": true,
+  "correct": false,
+  "reasoned": false,
+  "relevant": false,
+  "note": "Reports nothing_wrong, and recommends lifting the hold."
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4673",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4673",
+  "run": 2,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4689",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "A",
+  "shipment_id": "SH-4689",
+  "run": 2,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4471",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4471",
+  "run": 2,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4502",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": false,
+  "relevant": true,
+  "note": "No cited fact mentions the packing list or the case's hold; the facts are the shipment and the two documents on file."
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4502",
+  "run": 2,
+  "grounded": false,
+  "correct": true,
+  "reasoned": false,
+  "relevant": true,
+  "note": "The first fact is about SH-4502 but cites SH-4504, which isn't in the records; no cited fact mentions the packing list."
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4560",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4560",
+  "run": 2,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4612",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4612",
+  "run": 2,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4641",
+  "run": 2,
+  "grounded": true,
+  "correct": true,
+  "reasoned": false,
+  "relevant": true,
+  "note": "No cited fact says the commercial invoice is missing; the facts are the hold and the two documents that are on file."
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4656",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": "Reports undetermined and sends the case to a person."
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4656",
+  "run": 2,
+  "grounded": true,
+  "correct": false,
+  "reasoned": false,
+  "relevant": true,
+  "note": "Reports cause_found, but the 'cause' is that the records show no missing document; the action does send it to a person to find out."
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4673",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4673",
+  "run": 2,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4689",
+  "run": 1,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ },
+ {
+  "version": "B",
+  "shipment_id": "SH-4689",
+  "run": 2,
+  "grounded": true,
+  "correct": true,
+  "reasoned": true,
+  "relevant": true,
+  "note": ""
+ }
+]
